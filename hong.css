@@ -1,488 +1,116 @@
-        /* ==========================================
-           1. 기본 스타일 정의 (순수 CSS 레이아웃)
-           ========================================== */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: '맑은 고딕', sans-serif;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        body {
-            background-color: #fcfcfc; /* 이미지와 똑같은 연한 회색/흰색 배경 */
-            color: #333333;
-            line-height: 1.6;
-            padding-bottom: 80px;
-            /* CSS 카운터 설정: 화면에 보이는 카드 개수를 세기 위한 변수 */
-            counter-reset: active-cards-count;
-        }
+body {
+    margin: 0;
+    background-color: #eeeeee;
+    color: #222222;
+    font-family: "맑은 고딕", sans-serif;
+    line-height: 1.5;
+}
 
-        .container {
-            max-width: 1040px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
+.wrap {
+    width: 900px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+}
 
-        /* ==========================================
-           2. 상단 헤더 영역 (타이틀 및 소개글)
-           ========================================== */
-        .header {
-            margin-bottom: 24px;
-        }
+header {
+    background-color: #333333;
+    color: white;
+    padding: 25px;
+    text-align: center;
+}
 
-        .header h1 {
-            font-size: 32px;
-            font-weight: 700;
-            color: #111111;
-            margin-bottom: 8px;
-        }
+header h1 {
+    margin: 0 0 10px 0;
+}
 
-        .header p {
-            font-size: 15px;
-            color: #777777;
-        }
+header p {
+    margin: 0;
+}
 
-        /* ==========================================
-           3. 검색창 스타일 (디자인 일관성 유지)
-           ========================================== */
-        .search-container {
-            position: relative;
-            margin-bottom: 20px;
-            width: 100%;
-        }
+nav {
+    background-color: #dddddd;
+    padding: 12px;
+    text-align: center;
+}
 
-        .search-container input {
-            width: 100%;
-            padding: 14px 16px 14px 44px;
-            font-size: 14px;
-            border: none;
-            border-radius: 8px;
-            background-color: #f1f3f5;
-            outline: none;
-            color: #333;
-        }
+nav a {
+    color: #222222;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
 
-        .search-icon {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #868e96;
-            font-size: 16px;
-            pointer-events: none;
-        }
+section {
+    border: 1px solid #cccccc;
+    margin-top: 20px;
+    padding: 15px;
+}
 
-        /* ==========================================
-           4. 카테고리 탭 스타일 (라디오 버튼 연동식)
-           ========================================== */
-        /* 화면 뒤로 숨겨두는 라디오 버튼 컨트롤러 */
-        .tab-radio {
-            display: none;
-        }
+h2 {
+    border-bottom: 2px solid #555555;
+    padding-bottom: 8px;
+}
 
-        .tabs-container {
-            display: flex;
-            background-color: #e9ecef;
-            padding: 4px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            gap: 4px;
-        }
+.intro {
+    background-color: #f7f7f7;
+}
 
-        /* label 태그를 버튼처럼 스타일링합니다 */
-        .tab-btn {
-            flex: 1;
-            padding: 10px 0;
-            font-size: 14px;
-            font-weight: 500;
-            color: #495057;
-            border-radius: 6px;
-            cursor: pointer;
-            text-align: center;
-            transition: all 0.2s;
-            display: block;
-            user-select: none;
-        }
+.place {
+    display: flex;
+    gap: 15px;
+    border-bottom: 1px solid #dddddd;
+    padding: 15px 0;
+}
 
-        .tab-btn:hover {
-            color: #111111;
-        }
+.place:last-child {
+    border-bottom: none;
+}
 
-        /* 라디오 버튼이 선택되었을 때 해당 label 스타일 활성화 (CSS 선택자 마술) */
-        #tab-all-input:checked ~ .container .tabs-container label[for="tab-all-input"],
-        #tab-food-input:checked ~ .container .tabs-container label[for="tab-food-input"],
-        #tab-cafe-input:checked ~ .container .tabs-container label[for="tab-cafe-input"],
-        #tab-play-input:checked ~ .container .tabs-container label[for="tab-play-input"],
-        #tab-popup-input:checked ~ .container .tabs-container label[for="tab-popup-input"] {
-            background-color: #ffffff;
-            color: #111111;
-            font-weight: 700;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-        }
+.place img {
+    width: 180px;
+    height: 120px;
+    object-fit: cover;
+    border: 1px solid #aaaaaa;
+}
 
-        /* ==========================================
-           5. 실시간 카드 개수 표시 (CSS 카운터 마술)
-           ========================================== */
-        .places-count-bar {
-            font-size: 15px;
-            font-weight: 500;
-            color: #666666;
-            margin-bottom: 20px;
-        }
+.place h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
 
-        /* 화면에 보이는 카드당 카운터 1씩 증가 */
-        .place-card {
-            counter-increment: active-cards-count;
-        }
+.place p {
+    margin: 5px 0;
+}
 
-        /* 동적으로 누적된 카운터를 글자로 표시 */
-        #countText::before {
-            content: counter(active-cards-count);
-            font-weight: 700;
-            color: #111111;
-        }
+footer {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #333333;
+    color: white;
+    text-align: center;
+}
 
-        /* ==========================================
-           6. 카테고리 필터링 규칙 (CSS-Only)
-           ========================================== */
-        /* '먹거리' 탭이 선택되면, 먹거리가 아닌 카드는 숨기고 카운터 증가도 차단 */
-        #tab-food-input:checked ~ .container .places-grid .place-card:not(.food) {
-            display: none;
-            counter-increment: none;
-        }
-        /* '카페' 탭 선택 시 */
-        #tab-cafe-input:checked ~ .container .places-grid .place-card:not(.cafe) {
-            display: none;
-            counter-increment: none;
-        }
-        /* '놀거리' 탭 선택 시 */
-        #tab-play-input:checked ~ .container .places-grid .place-card:not(.play) {
-            display: none;
-            counter-increment: none;
-        }
-        /* '팝업스토어' 탭 선택 시 */
-        #tab-popup-input:checked ~ .container .places-grid .place-card:not(.popup) {
-            display: none;
-            counter-increment: none;
-        }
+@media (max-width: 700px) {
+    .wrap {
+        width: 100%;
+    }
 
-        /* ==========================================
-           7. 카드 그리드 및 개별 장소 카드 스타일
-           ========================================== */
-        .places-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 24px;
-        }
+    nav a {
+        display: block;
+        margin: 8px 0;
+    }
 
-        /* 클릭 가능하도록 label을 카드 전체 영역으로 만듭니다 */
-        .place-card {
-            background-color: #ffffff;
-            border-radius: 16px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid #f1f3f5;
-        }
+    .place {
+        display: block;
+    }
 
-        .place-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-        }
-
-        .card-image-box {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            background-color: #eeeeee;
-        }
-
-        .card-image-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-top-left-radius: 16px;
-            border-top-right-radius: 16px;
-        }
-
-        .card-body {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card-header-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 10px;
-            gap: 8px;
-        }
-
-        .card-title {
-            font-size: 17px;
-            font-weight: 700;
-            color: #111111;
-            line-height: 1.4;
-        }
-
-        .category-badge {
-            font-size: 11px;
-            background-color: #f1f3f5;
-            color: #495057;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-weight: 500;
-            white-space: nowrap;
-        }
-
-        .card-description {
-            font-size: 13px;
-            color: #777777;
-            margin-bottom: 16px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            line-height: 1.5;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: center;
-            font-size: 13px;
-            color: #666666;
-            margin-top: 6px;
-        }
-
-        .info-icon {
-            width: 14px;
-            height: 14px;
-            fill: #999999;
-            margin-right: 8px;
-            flex-shrink: 0;
-        }
-
-        /* ==========================================
-           8. 순수 CSS 모달 온/오프 제어 (기능 3)
-           ========================================== */
-        .modal-checkbox {
-            display: none;
-        }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: none; /* 기본 숨김 */
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            padding: 20px;
-        }
-
-        /* 모달 체크박스가 켜지면 팝업창을 보이게 합니다 */
-        .modal-checkbox:checked + .modal-overlay {
-            display: flex;
-        }
-
-        .modal-box {
-            background-color: #ffffff;
-            width: 100%;
-            max-width: 500px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            animation: fadeIn 0.2s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { transform: translateY(10px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .modal-img-container {
-            width: 100%;
-            height: 220px;
-            position: relative;
-        }
-
-        .modal-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* 닫기 버튼을 label로 가공하여 체크박스를 해제하도록 설계 */
-        .close-modal-btn {
-            position: absolute;
-            top: 14px;
-            right: 14px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #333333;
-            user-select: none;
-        }
-
-        .modal-content {
-            padding: 24px;
-        }
-
-        .modal-title-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
-        }
-
-        .modal-title {
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .modal-desc {
-            font-size: 14px;
-            color: #666666;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .modal-info-list {
-            background-color: #f8f9fa;
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 20px;
-        }
-
-        .modal-info-row {
-            display: flex;
-            margin-bottom: 12px;
-            font-size: 13.5px;
-        }
-
-        .modal-info-row:last-child {
-            margin-bottom: 0;
-        }
-
-        .modal-info-label {
-            width: 90px;
-            font-weight: 700;
-            color: #868e96;
-            flex-shrink: 0;
-        }
-
-        .modal-info-value {
-            color: #343a40;
-        }
-
-        /* ==========================================
-           9. 가상 예약 스위칭 기능 (CSS-Only) (기능 4)
-           ========================================== */
-        .success-checkbox {
-            display: none;
-        }
-
-        .booking-section {
-            border-top: 1px dashed #dee2e6;
-            padding-top: 20px;
-        }
-
-        .booking-title {
-            font-size: 15px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #111;
-        }
-
-        .booking-form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 11px;
-            font-weight: 700;
-            color: #868e96;
-            margin-bottom: 4px;
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ced4da;
-            border-radius: 6px;
-            font-size: 13px;
-            outline: none;
-            background-color: #fff;
-        }
-
-        /* 예약 완료 제출 역할을 대신해 줄 label 스타일 */
-        .booking-submit-btn {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            background-color: #222222;
-            color: #ffffff;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 14px;
-            cursor: pointer;
-            text-align: center;
-            user-select: none;
-            transition: background-color 0.1s;
-        }
-
-        .booking-submit-btn:hover {
-            background-color: #000000;
-        }
-
-        /* 예약 완료 축하 메시지 상자 */
-        .success-message-box {
-            display: none; /* 평소에는 숨김 */
-            background-color: #e6fcf5;
-            border: 1px solid #c3fae8;
-            color: #0ca678;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        .success-message-box h3 {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .success-message-box p {
-            font-size: 12.5px;
-        }
-
-        /* 예약 신청 완료 체크박스가 켜지면 폼 영역을 숨기고 성공 박스를 띄웁니다 */
-        .success-checkbox:checked ~ .booking-form-wrapper {
-            display: none;
-        }
-
-        .success-checkbox:checked ~ .success-message-box {
-            display: block;
-        }
+    .place img {
+        width: 100%;
+        height: auto;
+    }
+}

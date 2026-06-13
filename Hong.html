@@ -1,790 +1,132 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>홍대 탐색 - 홍대미치지</title>
+    <title>홍대 소개</title>
     <link rel="stylesheet" href="hong.css">
-
 </head>
 <body>
+    <div class="wrap">
+        <header>
+            <h1>홍대 소개 페이지</h1>
+            <p>홍대에서 가볼 만한 맛집, 카페, 놀거리를 간단하게 정리했습니다.</p>
+        </header>
 
-    <!-- 1. 카테고리 상태 조절용 백그라운드 라디오 버튼들 (HTML 최상단에 배치) -->
-    <input type="radio" id="tab-all-input" name="category-tab" class="tab-radio" checked>
-    <input type="radio" id="tab-food-input" name="category-tab" class="tab-radio">
-    <input type="radio" id="tab-cafe-input" name="category-tab" class="tab-radio">
-    <input type="radio" id="tab-play-input" name="category-tab" class="tab-radio">
-    <input type="radio" id="tab-popup-input" name="category-tab" class="tab-radio">
+        <nav>
+            <a href="#food">먹거리</a>
+            <a href="#cafe">카페</a>
+            <a href="#play">놀거리</a>
+            <a href="#popup">팝업스토어</a>
+        </nav>
 
-    <!-- 메인 레이아웃 컨테이너 -->
-    <div class="container">
+        <section class="intro">
+            <h2>홍대란?</h2>
+            <p>
+                홍대는 서울 마포구에 있는 번화가입니다. 거리 공연, 음식점, 카페,
+                소품샵 등이 많아서 친구들과 놀러 가기 좋은 장소입니다.
+            </p>
+        </section>
 
-        <!-- 상단 헤더 영역 -->
-        <div class="header">
-            <h1>홍대 미치지</h1>
-            <p>홍대의 핫한 맛집, 카페, 놀거리, 팝업스토어를 찾아보세요</p>
-        </div>
+        <section id="food">
+            <h2>먹거리</h2>
 
-        <!-- 검색바 (HTML/CSS 버전 가이드 제공) -->
-        <div class="search-container">
-            <svg class="search-icon" viewBox="0 0 24 24" width="24" height="24">
-                <path fill="currentColor" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-            </svg>
-            <input type="text" placeholder="검색어를 입력하세요.">
-        </div>
-
-        <!-- 카테고리 탭 탐색바 (기능 1 - label 태그로 처리) -->
-        <div class="tabs-container">
-            <label for="tab-all-input" class="tab-btn">전체</label>
-            <label for="tab-food-input" class="tab-btn">먹거리</label>
-            <label for="tab-cafe-input" class="tab-btn">카페</label>
-            <label for="tab-play-input" class="tab-btn">놀거리</label>
-            <label for="tab-popup-input" class="tab-btn">팝업스토어</label>
-        </div>
-
-        <!-- 장소 개수 표시 바 (기능 1 - CSS 카운터로 연동됨) -->
-        <div class="places-count-bar">
-            <span id="countText"></span>개의 장소
-        </div>
-
-        <!-- 장소 리스트 그리드 영역 -->
-        <div class="places-grid">
-
-            <!-- 카드 1 (홍대 떡볶이 명가) -->
-            <label for="modal-toggle-1" class="place-card food">
-                <div class="card-image-box">
-                    <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=600&auto=format&fit=crop" alt="홍대 떡볶이 명가">
+            <div class="place">
+                <img src="img/tteokbokki.jpg" alt="떡볶이">
+                <div>
+                    <h3>홍대 떡볶이 명가</h3>
+                    <p>매콤한 떡볶이와 튀김을 먹을 수 있는 분식집입니다.</p>
+                    <p>위치: 서울 마포구 와우산로 94</p>
+                    <p>영업시간: 11:00 - 22:00</p>
                 </div>
-                <div class="card-body">
-                    <div>
-                        <div class="card-header-row">
-                            <h3 class="card-title">홍대 떡볶이 명가</h3>
-                            <span class="category-badge">먹거리</span>
-                        </div>
-                        <p class="card-description">매콤달콤한 전통 떡볶이 맛집. 30년 전통의 비법 양념으로 만든 떡볶이와 바삭한 모듬 튀김 조합이 최고입니다.</p>
-                    </div>
-                    <div>
-                        <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                            <span>서울 마포구 와우산로 94</span>
-                        </div>
-                        <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                            <span>11:00 - 22:00</span>
-                        </div>
-                    </div>
-                </div>
-            </label>
+            </div>
 
-            <!-- 카드 2 (바다회집) -->
-            <label for="modal-toggle-2" class="place-card food">
-                <div class="card-image-box">
-                    <img src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?q=80&w=600&auto=format&fit=crop" alt="바다회집">
+            <div class="place">
+                <img src="img/seafood.jpg" alt="음식">
+                <div>
+                    <h3>바다회집</h3>
+                    <p>회와 해산물 요리를 먹을 수 있는 식당입니다.</p>
+                    <p>위치: 서울 마포구 양화로 160</p>
+                    <p>영업시간: 17:00 - 02:00</p>
                 </div>
-                <div class="card-body">
-                    <div>
-                        <div class="card-header-row">
-                            <h3 class="card-title">바다회집</h3>
-                            <span class="category-badge">먹거리</span>
-                        </div>
-                        <p class="card-description">신선한 회와 다양한 해산물 요리를 아늑한 분위기에서 즐길 수 있는 홍대의 유명 일식 전문 매장입니다.</p>
-                    </div>
-                    <div>
-                        <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                            <span>서울 마포구 양화로 160</span>
-                        </div>
-                        <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                            <span>17:00 - 02:00</span>
-                        </div>
-                    </div>
-                </div>
-            </label>
+            </div>
 
-            <!-- 카드 3 (파스타 하우스) -->
-            <label for="modal-toggle-3" class="place-card food">
-                <div class="card-image-box">
-                    <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=600&auto=format&fit=crop" alt="파스타 하우스">
+            <div class="place">
+                <img src="img/pasta.jpg" alt="파스타">
+                <div>
+                    <h3>파스타 하우스</h3>
+                    <p>파스타와 피자를 판매하는 이탈리안 음식점입니다.</p>
+                    <p>위치: 서울 마포구 홍익로 5길 3</p>
+                    <p>영업시간: 12:00 - 22:00</p>
                 </div>
-                <div class="card-body">
-                    <div>
-                        <div class="card-header-row">
-                            <h3 class="card-title">파스타 하우스</h3>
-                            <span class="category-badge">먹거리</span>
-                        </div>
-                        <p class="card-description">수제 파스타와 갓 구운 화덕 피자를 합리적인 가격에 제공하는 이탈리안 패밀리 레스토랑입니다.</p>
-                    </div>
-                    <div>
-                        <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                            <span>서울 마포구 홍익로 5길 3</span>
-                        </div>
-                        <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                            <span>12:00 - 22:00</span>
-                        </div>
-                    </div>
-                </div>
-            </label>
+            </div>
+        </section>
 
-            <!-- 카드 4 (어반 가든 루프탑) -->
-            <label for="modal-toggle-4" class="place-card cafe">
-                <div class="card-image-box">
-                    <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=600&auto=format&fit=crop" alt="어반 가든 루프탑">
-                </div>
-                <div class="card-body">
-                    <div>
-                        <div class="card-header-row">
-                            <h3 class="card-title">어반 가든 루프탑</h3>
-                            <span class="category-badge">카페</span>
-                        </div>
-                        <p class="card-description">도심 속 정원처럼 꾸며져 자연의 여유를 느낄 수 있는 루프탑 야외 카페입니다. 크림 라떼가 대표적입니다.</p>
-                    </div>
-                    <div>
-                        <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                            <span>서울 마포구 와우산로 29길 19</span>
-                        </div>
-                        <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                            <span>11:00 - 23:00</span>
-                        </div>
-                    </div>
-                </div>
-            </label>
+        <section id="cafe">
+            <h2>카페</h2>
 
-            <!-- 카드 5 (모카 라떼 바) -->
-            <label for="modal-toggle-5" class="place-card cafe">
-                <div class="card-image-box">
-                    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=600&auto=format&fit=crop" alt="모카 라떼 바">
+            <div class="place">
+                <img src="img/cafe.jpg" alt="카페">
+                <div>
+                    <h3>어반 가든 루프탑</h3>
+                    <p>야외 분위기를 느낄 수 있는 루프탑 카페입니다.</p>
+                    <p>위치: 서울 마포구 와우산로 29길 19</p>
+                    <p>영업시간: 11:00 - 23:00</p>
                 </div>
-                <div class="card-body">
-                    <div>
-                        <div class="card-header-row">
-                            <h3 class="card-title">모카 라떼 바</h3>
-                            <span class="category-badge">카페</span>
-                        </div>
-                        <p class="card-description">조용하고 감각적인 인테리어와 정성스레 내린 드립커피 향이 가득한 숨은 단골 전용 카페입니다.</p>
-                    </div>
-                    <div>
-                        <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                            <span>서울 마포구 동교로 29길 28</span>
-                        </div>
-                        <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                            <span>10:00 - 21:00</span>
-                        </div>
-                    </div>
-                </div>
-            </label>
+            </div>
 
-            <!-- 카드 6 (미스터리 이스케이프) -->
-            <label for="modal-toggle-6" class="place-card play">
-                <div class="card-image-box">
-                    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=600&auto=format&fit=crop" alt="미스터리 이스케이프">
+            <div class="place">
+                <img src="img/coffee.jpg" alt="커피">
+                <div>
+                    <h3>모카 라떼 바</h3>
+                    <p>조용한 분위기에서 커피를 마실 수 있는 카페입니다.</p>
+                    <p>위치: 서울 마포구 동교로 29길 28</p>
+                    <p>영업시간: 10:00 - 21:00</p>
                 </div>
-                <div class="card-body">
-                    <div>
-                        <div class="card-header-row">
-                            <h3 class="card-title">미스터리 이스케이프</h3>
-                            <span class="category-badge">놀거리</span>
-                        </div>
-                        <p class="card-description">홍대 최고 인기 고난이도 방탈출 카페입니다. 다양한 장치와 미스터리한 연출로 강한 긴장감을 선물합니다.</p>
-                    </div>
-                    <div>
-                        <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                            <span>서울 마포구 독막로 7길 34</span>
-                        </div>
-                        <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                            <span>13:00 - 22:30</span>
-                        </div>
-                    </div>
-                </div>
-            </label>
+            </div>
+        </section>
 
-            <!-- 카드 7 (보드게임 파라다이스) -->
-            <label for="modal-toggle-7" class="place-card play">
-                <div class="card-image-box">
-                    <img src="https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?q=80&w=600&auto=format&fit=crop" alt="보드게임 파라다이스">
-                </div>
-                <div class="card-body">
-                    <div>
-                        <div class="card-header-row">
-                            <h3 class="card-title">보드게임 파라다이스</h3>
-                            <span class="category-badge">놀거리</span>
-                        </div>
-                        <p class="card-description">수백여 종의 인기 보드게임을 넓고 아늑한 다락방 룸 형태 공간에서 즐길 수 있는 카페형 놀이 공간입니다.</p>
-                    </div>
-                    <div>
-                        <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                            <span>서울 마포구 잔다리로 6</span>
-                        </div>
-                        <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                            <span>12:00 - 02:00</span>
-                        </div>
-                    </div>
-                </div>
-            </label>
+        <section id="play">
+            <h2>놀거리</h2>
 
-            <!-- 카드 8 (네온 퍼퓸 하우스 팝업) -->
-            <label for="modal-toggle-8" class="place-card popup">
-                <div class="card-image-box">
-                    <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=600&auto=format&fit=crop" alt="네온 퍼퓸 하우스 팝업">
+            <div class="place">
+                <img src="img/game.jpg" alt="게임">
+                <div>
+                    <h3>미스터리 이스케이프</h3>
+                    <p>친구들과 방탈출 게임을 할 수 있는 장소입니다.</p>
+                    <p>위치: 서울 마포구 독막로 7길 34</p>
+                    <p>영업시간: 13:00 - 22:30</p>
                 </div>
-                <div class="card-body">
-                    <div>
-                        <div class="card-header-row">
-                            <h3 class="card-title">네온 퍼퓸 하우스 팝업</h3>
-                            <span class="category-badge">팝업스토어</span>
-                        </div>
-                        <p class="card-description">조향 테스트를 통해 나만의 개성 넘치는 유니크 향기를 체험해 갈 수 있는 가을 한정 오픈 브랜드 팝업스토어입니다.</p>
-                    </div>
-                    <div>
-                        <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                            <span>서울 마포구 홍익로5길 45</span>
-                        </div>
-                        <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                            <span>11:00 - 20:00</span>
-                        </div>
-                    </div>
+            </div>
+
+            <div class="place">
+                <img src="img/boardgame.jpg" alt="보드게임">
+                <div>
+                    <h3>보드게임 파라다이스</h3>
+                    <p>여러 종류의 보드게임을 즐길 수 있는 카페입니다.</p>
+                    <p>위치: 서울 마포구 잔다리로 6</p>
+                    <p>영업시간: 12:00 - 02:00</p>
                 </div>
-            </label>
+            </div>
+        </section>
 
-        </div>
+        <section id="popup">
+            <h2>팝업스토어</h2>
 
+            <div class="place">
+                <img src="img/popup.jpg" alt="팝업스토어">
+                <div>
+                    <h3>네온 퍼퓸 하우스 팝업</h3>
+                    <p>향수를 직접 체험해 볼 수 있는 팝업스토어입니다.</p>
+                    <p>위치: 서울 마포구 홍익로5길 45</p>
+                    <p>영업시간: 11:00 - 20:00</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>2026 웹페이지 과제</p>
+        </footer>
     </div>
-
-    <!-- ==========================================
-       10. 무자바스크립트 상세 보기 및 예약 모달 선언부
-       ========================================== -->
-
-    <!-- [모달 1] 홍대 떡볶이 명가 -->
-    <input type="checkbox" id="modal-toggle-1" class="modal-checkbox">
-    <div class="modal-overlay">
-        <div class="modal-box">
-            <div class="modal-img-container">
-                <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=600&auto=format&fit=crop" alt="홍대 떡볶이 명가">
-                <label for="modal-toggle-1" class="close-modal-btn">×</label>
-            </div>
-            <div class="modal-content">
-                <div class="modal-title-row">
-                    <span class="category-badge">먹거리</span>
-                    <h2 class="modal-title">홍대 떡볶이 명가</h2>
-                </div>
-                <p class="modal-desc">매콤달콤한 전통 떡볶이 맛집. 30년 전통의 비법 양념으로 만든 떡볶이와 바삭한 모듬 튀김 조합이 최고입니다.</p>
-                
-                <div class="modal-info-list">
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">📍 위치</div>
-                        <div class="modal-info-value">서울 마포구 와우산로 94</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">🕒 영업시간</div>
-                        <div class="modal-info-value">11:00 - 22:00</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">💰 가격 정보</div>
-                        <div class="modal-info-value">떡볶이 4,500원 / 모듬튀김 5,000원</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">🎫 예약 여부</div>
-                        <div class="modal-info-value">예약 없이 이용 가능 (상시 방문 환영)</div>
-                    </div>
-                </div>
-
-                <div class="booking-section">
-                    <input type="checkbox" id="success-1" class="success-checkbox">
-                    
-                    <div class="booking-form-wrapper">
-                        <div class="booking-title">🗓️ 실시간 예약하기 (가상 시뮬레이션)</div>
-                        <div class="booking-form-grid">
-                            <div class="form-group">
-                                <label>예약일</label>
-                                <input type="date" value="2026-06-06">
-                            </div>
-                            <div class="form-group">
-                                <label>시간</label>
-                                <select>
-                                    <option>오후 12:00</option>
-                                    <option>오후 02:00</option>
-                                    <option>오후 06:00</option>
-                                </select>
-                            </div>
-                        </div>
-                        <label for="success-1" class="booking-submit-btn">예약 신청하기</label>
-                    </div>
-
-                    <div class="success-message-box">
-                        <h3>🎉 예약 신청 완료!</h3>
-                        <p>선택하신 일시에 맞춰 매장을 편하게 방문해 주세요.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- [모달 2] 바다회집 -->
-    <input type="checkbox" id="modal-toggle-2" class="modal-checkbox">
-    <div class="modal-overlay">
-        <div class="modal-box">
-            <div class="modal-img-container">
-                <img src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?q=80&w=600&auto=format&fit=crop" alt="바다회집">
-                <label for="modal-toggle-2" class="close-modal-btn">×</label>
-            </div>
-            <div class="modal-content">
-                <div class="modal-title-row">
-                    <span class="category-badge">먹거리</span>
-                    <h2 class="modal-title">바다회집</h2>
-                </div>
-                <p class="modal-desc">신선한 회와 다양한 해산물 요리를 아늑한 분위기에서 즐길 수 있는 홍대의 유명 일식 전문 매장입니다.</p>
-                
-                <div class="modal-info-list">
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">📍 위치</div>
-                        <div class="modal-info-value">서울 마포구 양화로 160</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">🕒 영업시간</div>
-                        <div class="modal-info-value">17:00 - 02:00</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">💰 가격 정보</div>
-                        <div class="modal-info-value">모듬회(중) 45,000원</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">🎫 예약 여부</div>
-                        <div class="modal-info-value">네이버 실시간 예약 및 전화 단체 예약 가능</div>
-                    </div>
-                </div>
-
-                <div class="booking-section">
-                    <input type="checkbox" id="success-2" class="success-checkbox">
-                    
-                    <div class="booking-form-wrapper">
-                        <div class="booking-title">🗓️ 실시간 예약하기 (가상 시뮬레이션)</div>
-                        <div class="booking-form-grid">
-                            <div class="form-group">
-                                <label>예약일</label>
-                                <input type="date" value="2026-06-06">
-                            </div>
-                            <div class="form-group">
-                                <label>시간</label>
-                                <select>
-                                    <option>오후 12:00</option>
-                                    <option>오후 02:00</option>
-                                    <option>오후 06:00</option>
-                                </select>
-                            </div>
-                        </div>
-                        <label for="success-2" class="booking-submit-btn">예약 신청하기</label>
-                    </div>
-
-                    <div class="success-message-box">
-                        <h3>🎉 예약 신청 완료!</h3>
-                        <p>선택하신 일시에 맞춰 매장을 편하게 방문해 주세요.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- [모달 3] 파스타 하우스 -->
-    <input type="checkbox" id="modal-toggle-3" class="modal-checkbox">
-    <div class="modal-overlay">
-        <div class="modal-box">
-            <div class="modal-img-container">
-                <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=600&auto=format&fit=crop" alt="파스타 하우스">
-                <label for="modal-toggle-3" class="close-modal-btn">×</label>
-            </div>
-            <div class="modal-content">
-                <div class="modal-title-row">
-                    <span class="category-badge">먹거리</span>
-                    <h2 class="modal-title">파스타 하우스</h2>
-                </div>
-                <p class="modal-desc">수제 파스타와 갓 구운 화덕 피자를 합리적인 가격에 제공하는 이탈리안 패밀리 레스토랑입니다.</p>
-                
-                <div class="modal-info-list">
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">📍 위치</div>
-                        <div class="modal-info-value">서울 마포구 홍익로 5길 3</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">🕒 영업시간</div>
-                        <div class="modal-info-value">12:00 - 22:00</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">💰 가격 정보</div>
-                        <div class="modal-info-value">까르보나라 12,000원 / 마르게리따 14,000원</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">🎫 예약 여부</div>
-                        <div class="modal-info-value">테이블 사전 예약 권장 (주말 한정)</div>
-                    </div>
-                </div>
-
-                <div class="booking-section">
-                    <input type="checkbox" id="success-3" class="success-checkbox">
-                    
-                    <div class="booking-form-wrapper">
-                        <div class="booking-title">🗓️ 실시간 예약하기 (가상 시뮬레이션)</div>
-                        <div class="booking-form-grid">
-                            <div class="form-group">
-                                <label>예약일</label>
-                                <input type="date" value="2026-06-06">
-                            </div>
-                            <div class="form-group">
-                                <label>시간</label>
-                                <select>
-                                    <option>오후 12:00</option>
-                                    <option>오후 02:00</option>
-                                    <option>오후 06:00</option>
-                                </select>
-                            </div>
-                        </div>
-                        <label for="success-3" class="booking-submit-btn">예약 신청하기</label>
-                    </div>
-
-                    <div class="success-message-box">
-                        <h3>🎉 예약 신청 완료!</h3>
-                        <p>선택하신 일시에 맞춰 매장을 편하게 방문해 주세요.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- [모달 4] 어반 가든 루프탑 -->
-    <input type="checkbox" id="modal-toggle-4" class="modal-checkbox">
-    <div class="modal-overlay">
-        <div class="modal-box">
-            <div class="modal-img-container">
-                <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=600&auto=format&fit=crop" alt="어반 가든 루프탑">
-                <label for="modal-toggle-4" class="close-modal-btn">×</label>
-            </div>
-            <div class="modal-content">
-                <div class="modal-title-row">
-                    <span class="category-badge">카페</span>
-                    <h2 class="modal-title">어반 가든 루프탑</h2>
-                </div>
-                <p class="modal-desc">도심 속 정원처럼 꾸며져 자연의 여유를 느낄 수 있는 루프탑 야외 카페입니다. 크림 라떼가 대표적입니다.</p>
-                
-                <div class="modal-info-list">
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">📍 위치</div>
-                        <div class="modal-info-value">서울 마포구 와우산로 29길 19</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">🕒 영업시간</div>
-                        <div class="modal-info-value">11:00 - 23:00</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">💰 가격 정보</div>
-                        <div class="modal-info-value">아메리카노 5,000원 / 크림 아인슈페너 6,500원</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">🎫 예약 여부</div>
-                        <div class="modal-info-value">예약 가능 (야외 테라스 단체 테이블석에 한함)</div>
-                    </div>
-                </div>
-
-                <div class="booking-section">
-                    <input type="checkbox" id="success-4" class="success-checkbox">
-                    
-                    <div class="booking-form-wrapper">
-                        <div class="booking-title">🗓️ 실시간 예약하기 (가상 시뮬레이션)</div>
-                        <div class="booking-form-grid">
-                            <div class="form-group">
-                                <label>예약일</label>
-                                <input type="date" value="2026-06-06">
-                            </div>
-                            <div class="form-group">
-                                <label>시간</label>
-                                <select>
-                                    <option>오후 12:00</option>
-                                    <option>오후 02:00</option>
-                                    <option>오후 06:00</option>
-                                </select>
-                            </div>
-                        </div>
-                        <label for="success-4" class="booking-submit-btn">예약 신청하기</label>
-                    </div>
-
-                    <div class="success-message-box">
-                        <h3>🎉 예약 신청 완료!</h3>
-                        <p>선택하신 일시에 맞춰 매장을 편하게 방문해 주세요.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- [모달 5] 모카 라떼 바 -->
-    <input type="checkbox" id="modal-toggle-5" class="modal-checkbox">
-    <div class="modal-overlay">
-        <div class="modal-box">
-            <div class="modal-img-container">
-                <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=600&auto=format&fit=crop" alt="모카 라떼 바">
-                <label for="modal-toggle-5" class="close-modal-btn">×</label>
-            </div>
-            <div class="modal-content">
-                <div class="modal-title-row">
-                    <span class="category-badge">카페</span>
-                    <h2 class="modal-title">모카 라떼 바</h2>
-                </div>
-                <p class="modal-desc">조용하고 감각적인 인테리어와 정성스레 내린 드립커피 향이 가득한 숨은 단골 전용 카페입니다.</p>
-                
-                <div class="modal-info-list">
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">📍 위치</div>
-                        <div class="modal-info-value">서울 마포구 동교로 29길 28</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">🕒 영업시간</div>
-                        <div class="modal-info-value">10:00 - 21:00</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">💰 가격 정보</div>
-                        <div class="modal-info-value">핸드드립 커피 6,000원</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">🎫 예약 여부</div>
-                        <div class="modal-info-value">예약 불가 (상시 워크인 입장만 허용)</div>
-                    </div>
-                </div>
-
-                <div class="booking-section">
-                    <input type="checkbox" id="success-5" class="success-checkbox">
-                    
-                    <div class="booking-form-wrapper">
-                        <div class="booking-title">🗓️ 실시간 예약하기 (가상 시뮬레이션)</div>
-                        <div class="booking-form-grid">
-                            <div class="form-group">
-                                <label>예약일</label>
-                                <input type="date" value="2026-06-06">
-                            </div>
-                            <div class="form-group">
-                                <label>시간</label>
-                                <select>
-                                    <option>오후 12:00</option>
-                                    <option>오후 02:00</option>
-                                    <option>오후 06:00</option>
-                                </select>
-                            </div>
-                        </div>
-                        <label for="success-5" class="booking-submit-btn">예약 신청하기</label>
-                    </div>
-
-                    <div class="success-message-box">
-                        <h3>🎉 예약 신청 완료!</h3>
-                        <p>선택하신 일시에 맞춰 매장을 편하게 방문해 주세요.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- [모달 6] 미스터리 이스케이프 -->
-    <input type="checkbox" id="modal-toggle-6" class="modal-checkbox">
-    <div class="modal-overlay">
-        <div class="modal-box">
-            <div class="modal-img-container">
-                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=600&auto=format&fit=crop" alt="미스터리 이스케이프">
-                <label for="modal-toggle-6" class="close-modal-btn">×</label>
-            </div>
-            <div class="modal-content">
-                <div class="modal-title-row">
-                    <span class="category-badge">놀거리</span>
-                    <h2 class="modal-title">미스터리 이스케이프</h2>
-                </div>
-                <p class="modal-desc">홍대 최고 인기 고난이도 방탈출 카페입니다. 다양한 장치와 미스터리한 연출로 강한 긴장감을 선물합니다.</p>
-                
-                <div class="modal-info-list">
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">📍 위치</div>
-                        <div class="modal-info-value">서울 마포구 독막로 7길 34</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">🕒 영업시간</div>
-                        <div class="modal-info-value">13:00 - 22:30</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">💰 가격 정보</div>
-                        <div class="modal-info-value">인당 이용료 22,000원</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">🎫 예약 여부</div>
-                        <div class="modal-info-value">홈페이지 테마별 시간대 사전 예약 필수</div>
-                    </div>
-                </div>
-
-                <div class="booking-section">
-                    <input type="checkbox" id="success-6" class="success-checkbox">
-                    
-                    <div class="booking-form-wrapper">
-                        <div class="booking-title">🗓️ 실시간 예약하기 (가상 시뮬레이션)</div>
-                        <div class="booking-form-grid">
-                            <div class="form-group">
-                                <label>예약일</label>
-                                <input type="date" value="2026-06-06">
-                            </div>
-                            <div class="form-group">
-                                <label>시간</label>
-                                <select>
-                                    <option>오후 12:00</option>
-                                    <option>오후 02:00</option>
-                                    <option>오후 06:00</option>
-                                </select>
-                            </div>
-                        </div>
-                        <label for="success-6" class="booking-submit-btn">예약 신청하기</label>
-                    </div>
-
-                    <div class="success-message-box">
-                        <h3>🎉 예약 신청 완료!</h3>
-                        <p>선택하신 일시에 맞춰 매장을 편하게 방문해 주세요.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- [모달 7] 보드게임 파라다이스 -->
-    <input type="checkbox" id="modal-toggle-7" class="modal-checkbox">
-    <div class="modal-overlay">
-        <div class="modal-box">
-            <div class="modal-img-container">
-                <img src="https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?q=80&w=600&auto=format&fit=crop" alt="보드게임 파라다이스">
-                <label for="modal-toggle-7" class="close-modal-btn">×</label>
-            </div>
-            <div class="modal-content">
-                <div class="modal-title-row">
-                    <span class="category-badge">놀거리</span>
-                    <h2 class="modal-title">보드게임 파라다이스</h2>
-                </div>
-                <p class="modal-desc">수백여 종의 인기 보드게임을 넓고 아늑한 다락방 룸 형태 공간에서 즐길 수 있는 카페형 놀이 공간입니다.</p>
-                
-                <div class="modal-info-list">
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">📍 위치</div>
-                        <div class="modal-info-value">서울 마포구 잔다리로 6</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">🕒 영업시간</div>
-                        <div class="modal-info-value">12:00 - 02:00</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">💰 가격 정보</div>
-                        <div class="modal-info-value">1시간 기본 이용료 3,000원</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">🎫 예약 여부</div>
-                        <div class="modal-info-value">평일 상시 입장 가능, 단체 예약 우대</div>
-                    </div>
-                </div>
-
-                <div class="booking-section">
-                    <input type="checkbox" id="success-7" class="success-checkbox">
-                    
-                    <div class="booking-form-wrapper">
-                        <div class="booking-title">🗓️ 실시간 예약하기 (가상 시뮬레이션)</div>
-                        <div class="booking-form-grid">
-                            <div class="form-group">
-                                <label>예약일</label>
-                                <input type="date" value="2026-06-06">
-                            </div>
-                            <div class="form-group">
-                                <label>시간</label>
-                                <select>
-                                    <option>오후 12:00</option>
-                                    <option>오후 02:00</option>
-                                    <option>오후 06:00</option>
-                                </select>
-                            </div>
-                        </div>
-                        <label for="success-7" class="booking-submit-btn">예약 신청하기</label>
-                    </div>
-
-                    <div class="success-message-box">
-                        <h3>🎉 예약 신청 완료!</h3>
-                        <p>선택하신 일시에 맞춰 매장을 편하게 방문해 주세요.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- [모달 8] 네온 퍼퓸 하우스 팝업 -->
-    <input type="checkbox" id="modal-toggle-8" class="modal-checkbox">
-    <div class="modal-overlay">
-        <div class="modal-box">
-            <div class="modal-img-container">
-                <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=600&auto=format&fit=crop" alt="네온 퍼퓸 하우스 팝업">
-                <label for="modal-toggle-8" class="close-modal-btn">×</label>
-            </div>
-            <div class="modal-content">
-                <div class="modal-title-row">
-                    <span class="category-badge">팝업스토어</span>
-                    <h2 class="modal-title">네온 퍼퓸 하우스 팝업</h2>
-                </div>
-                <p class="modal-desc">조향 테스트를 통해 나만의 개성 넘치는 유니크 향기를 체험해 갈 수 있는 가을 한정 오픈 브랜드 팝업스토어입니다.</p>
-                
-                <div class="modal-info-list">
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">📍 위치</div>
-                        <div class="modal-info-value">서울 마포구 홍익로5길 45</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">🕒 영업시간</div>
-                        <div class="modal-info-value">11:00 - 20:00 (~6월 30일 시즌 종료)</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">💰 가격 정보</div>
-                        <div class="modal-info-value">입장 무료 / 향수 만들기 체험비 15,000원</div>
-                    </div>
-                    <div class="modal-info-row">
-                        <div class="modal-info-label">🎫 예약 여부</div>
-                        <div class="modal-info-value">네이버 사전 타임제 예약 필수</div>
-                    </div>
-                </div>
-
-                <div class="booking-section">
-                    <input type="checkbox" id="success-8" class="success-checkbox">
-                    
-                    <div class="booking-form-wrapper">
-                        <div class="booking-title">🗓️ 실시간 예약하기 (가상 시뮬레이션)</div>
-                        <div class="booking-form-grid">
-                            <div class="form-group">
-                                <label>예약일</label>
-                                <input type="date" value="2026-06-06">
-                            </div>
-                            <div class="form-group">
-                                <label>시간</label>
-                                <select>
-                                    <option>오후 12:00</option>
-                                    <option>오후 02:00</option>
-                                    <option>오후 06:00</option>
-                                </select>
-                            </div>
-                        </div>
-                        <label for="success-8" class="booking-submit-btn">예약 신청하기</label>
-                    </div>
-
-                    <div class="success-message-box">
-                        <h3>🎉 예약 신청 완료!</h3>
-                        <p>선택하신 일시에 맞춰 매장을 편하게 방문해 주세요.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </body>
 </html>
